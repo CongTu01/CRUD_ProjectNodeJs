@@ -5,10 +5,16 @@ const { engine } = require ('express-handlebars');
 const sass = require('node-sass');
 const app = express()
 const port = 3000
+
+app.use(express.urlencoded({
+  extended:true
+}));
+app.use(express.json());
 //http logger
 app.use(morgan('combined'))
+
+
 app.use(express.static(path.join(__dirname,"public")));
-console.log('log:'+path.join(__dirname,"public"));
 
 
 //template engil
@@ -21,6 +27,13 @@ app.get('/', (req, res) => {
 })
 app.get('/news', (req, res) => {
   res.render('news');
+})
+
+app.get('/search', (req, res) => {
+  res.render('search');
+})
+app.post('/search', (req, res) => {
+  res.send('');
 })
 
 app.listen(port, () => {
