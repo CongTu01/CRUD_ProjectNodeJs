@@ -6,6 +6,8 @@ const sass = require('node-sass');
 const app = express()
 const port = 3000
 
+const route = require('./routes/index') 
+
 app.use(express.urlencoded({
   extended:true
 }));
@@ -17,10 +19,14 @@ app.use(morgan('combined'))
 app.use(express.static(path.join(__dirname,"public")));
 
 
+
 //template engil
 app.engine('hbs', engine({extname:".hbs"}))
 app.set('view engine', 'hbs')
 app.set('views',path.join(__dirname,'resource/views'));
+
+//Routes init
+route(app);
 
 app.get('/', (req, res) => {
   res.render('home');
