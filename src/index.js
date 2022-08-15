@@ -3,8 +3,10 @@ const morgan = require('morgan')
 const path =require('path')
 const { engine } = require ('express-handlebars');
 const sass = require('node-sass');
+const methodOverride = require('method-override')
 const app = express()
 const port = 3000
+const  handlebars =require ('express-handlebars');
 
 const route = require('./routes/index') ;
 const db =  require('./config/db')
@@ -20,10 +22,15 @@ app.use(morgan('combined'))
 
 app.use(express.static(path.join(__dirname,"public")));
 
-
+//auto change method
+app.use(methodOverride('_method'))
 
 //template engil
-app.engine('hbs', engine({extname:".hbs"}))
+app.engine('hbs', handlebars.engine({extname:".hbs",
+helpers: {
+  sum(a,b) { return a+b; }
+}}),
+)
 app.set('view engine', 'hbs')
 app.set('views',path.join(__dirname,'resource/views'));
 

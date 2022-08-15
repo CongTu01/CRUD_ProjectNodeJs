@@ -2,6 +2,7 @@
 
 {{#each courses}}
     <h1>hhhh</h1>
-    <li>{{this.name}}</li>
+    <a href="course/{{this.slug}}" class=""> <li>{{this.name}}</li></a>
     <li>{{this.description}}</li>
+    <img src="{{this.img}}" alt="none">
 {{/each}}
