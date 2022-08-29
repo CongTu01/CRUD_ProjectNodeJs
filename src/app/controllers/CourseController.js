@@ -40,7 +40,13 @@ class CourseController {
       Course.updateOne({_id:req.params.id},req.body)
         .then(()=>{res.redirect('/me/course/store')})
         .catch(next)
-
+    }
+    //[delete]/course/:id
+    delete(req,res,next)
+    {
+      Course.deleteOne({_id:req.params.id})
+      .then(()=>{res.redirect('back')})
+      .catch(next)
     }
 }
 
