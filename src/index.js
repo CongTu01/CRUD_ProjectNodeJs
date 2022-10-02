@@ -2,7 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const path =require('path')
 const { engine } = require ('express-handlebars');
-const sass = require('node-sass');
+
 const methodOverride = require('method-override')
 const app = express()
 const port = 3000
@@ -33,6 +33,11 @@ helpers: {
 )
 app.set('view engine', 'hbs')
 app.set('views',path.join(__dirname,'resource/views'));
+
+app.get("/middleware",function(req,res)
+{
+  res.json({message:"hello middleware"})
+})
 
 //Routes init
 route(app);

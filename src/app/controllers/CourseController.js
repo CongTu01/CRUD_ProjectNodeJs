@@ -18,11 +18,10 @@ class CourseController {
   //[POST] /course/store
   store(req,res,next) {
   // res.json(req.body)
-  const data=req.body
-  data.img = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg`
+  req.body.img = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg`
    const course = new Course(req.body)
    course.save()
-    .then(()=>{res.redirect('/')})
+    .then(()=>{res.redirect('/me/course/store')})
     .catch(next)
   }
 
@@ -44,10 +43,22 @@ class CourseController {
     //[delete]/course/:id
     delete(req,res,next)
     {
-      Course.deleteOne({_id:req.params.id})
+      Course.delete({_id:req.params.id})
       .then(()=>{res.redirect('back')})
       .catch(next)
     }
+      //[patch]/course/:id/restore
+      restore(req,res,next) {
+        Course.restore({_id:req.params.id})
+        .then(()=>{res.redirect('back')})
+        .catch(next)
+      }
+//  //[delete]/course/:id/vinhvien
+      deleteFinal(req,res,next){
+        Course.deleteOne({_id:req.params.id})
+      .then(()=>{res.redirect('back')})
+      .catch(next)
+      }
 }
 
 module.exports = new CourseController;
