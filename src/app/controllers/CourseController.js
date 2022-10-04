@@ -31,6 +31,7 @@ class CourseController {
         .then(courses=>{courses = courses.toObject()   
           res.render('course/update',{courses})})
         .catch(next)
+
     }
     //[put]/course/:id
     updatefinal(req,res,next) {
@@ -59,6 +60,11 @@ class CourseController {
       .then(()=>{res.redirect('back')})
       .catch(next)
       }
+    //form form action 
+    formaction(req,res,next)
+    {
+      res.json(req.body)
+    }
 }
 
 module.exports = new CourseController;

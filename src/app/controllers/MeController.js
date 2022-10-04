@@ -5,7 +5,14 @@ class MeController {
 
         store(req,res)
         {
-            Promise.all([Course.find({}), Course.countDocumentsDeleted()])
+            let cousrQuery = Course.find({});
+            if(req.query.hasOwnProperty('_sort'))
+            {
+                cousrQuery.sort({
+                    [req.query.column]: req.query.type
+                })
+            }
+            Promise.all([cousrQuery, Course.countDocumentsDeleted()])
                 .then(([courses,CountDeleted])=>{
                     courses = courses.map(courses=>courses.toObject())
                     res.render('me/store_courses',{
