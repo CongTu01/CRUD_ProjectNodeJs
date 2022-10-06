@@ -6,6 +6,7 @@ class MeController {
         store(req,res)
         {
             let cousrQuery = Course.find({});
+
             if(req.query.hasOwnProperty('_sort'))
             {
                 cousrQuery.sort({

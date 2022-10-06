@@ -20,6 +20,7 @@
   </div>
   
 </div>
+
 <table class="table">
   <thead>
     <tr>
@@ -27,12 +28,14 @@
       <th scope="col" ></th>
       <th scope="col">
         Name
-           <a href="?_sort&column=name&type=desc">
-          <ion-icon name="caret-down-circle-outline"></ion-icon>
-        </a>
+          {{{sortable 'name' _sort}}}
         </th>
-      <th scope="col">trinh do</th>
-      <th scope="col">thoi gian tao</th>
+      <th scope="col">trinh do
+         {{{sortable 'level' _sort}}}
+      </th>
+      <th scope="col">thoi gian tao
+         {{{sortable 'createdAt' _sort}}}
+      </th>
     </tr>
   </thead>
   <tbody>
