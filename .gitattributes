@@ -1,3 +1,2 @@
-*.Handlebars linguist-detectable=false
 *.js linguist-detectable=true
 *.hbs linguist-detectable=false
